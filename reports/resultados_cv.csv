@@ -1,0 +1,5 @@
+Modelo,Mejores_Hiperparametros,CV_F1_Media,CV_F1_DesvEst,Val_F1,Val_Exactitud
+Regresion_Logistica,{'C': 0.1},0.9803,0.0087,1.0,1.0
+Naive_Bayes,{'var_smoothing': np.float64(1e-11)},0.9585,0.0114,0.9423,0.9294
+SVM,"{'C': 10, 'gamma': 0.01, 'kernel': 'rbf'}",0.9842,0.0101,1.0,1.0
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (32, 16)}",0.9615,0.0151,0.9808,0.9765
