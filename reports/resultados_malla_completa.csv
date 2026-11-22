@@ -1,0 +1,45 @@
+Modelo,params,mean_test_score,std_test_score
+Regresion_Logistica,{'C': 0.01},0.9595575945090508,0.0071139139632822816
+Regresion_Logistica,{'C': 0.1},0.9803121945546923,0.008684260117267334
+Regresion_Logistica,{'C': 1},0.9761164351729292,0.007964685904544291
+Regresion_Logistica,{'C': 10},0.9681141512209473,0.0075242700903633405
+Regresion_Logistica,{'C': 100},0.9640737471805434,0.010446226462225273
+Naive_Bayes,{'var_smoothing': np.float64(1e-11)},0.9584815141708345,0.011356199579554903
+Naive_Bayes,{'var_smoothing': np.float64(1e-10)},0.9584815141708345,0.011356199579554903
+Naive_Bayes,{'var_smoothing': np.float64(1e-09)},0.9584815141708345,0.011356199579554903
+Naive_Bayes,{'var_smoothing': np.float64(1e-08)},0.9584815141708345,0.011356199579554903
+Naive_Bayes,{'var_smoothing': np.float64(1e-07)},0.9584815141708345,0.011356199579554903
+SVM,"{'C': 0.1, 'kernel': 'linear'}",0.9763145020384393,0.009976167033960204
+SVM,"{'C': 1, 'kernel': 'linear'}",0.9702531886541024,0.009038140344932333
+SVM,"{'C': 10, 'kernel': 'linear'}",0.9617729038209945,0.015212999407256443
+SVM,"{'C': 100, 'kernel': 'linear'}",0.9578882551619537,0.012351564868074141
+SVM,"{'C': 0.1, 'gamma': 'scale', 'kernel': 'rbf'}",0.9552155774931332,0.004247370843872105
+SVM,"{'C': 0.1, 'gamma': 0.01, 'kernel': 'rbf'}",0.9542124542124542,0.0036630036630036942
+SVM,"{'C': 0.1, 'gamma': 0.1, 'kernel': 'rbf'}",0.9419292110391421,0.024527133533167628
+SVM,"{'C': 1, 'gamma': 'scale', 'kernel': 'rbf'}",0.9822527886140984,0.007183958252072457
+SVM,"{'C': 1, 'gamma': 0.01, 'kernel': 'rbf'}",0.9766591143145418,0.009701609825917699
+SVM,"{'C': 1, 'gamma': 0.1, 'kernel': 'rbf'}",0.9660469960518222,0.019311082861259432
+SVM,"{'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}",0.9822111599614374,0.007254543664111179
+SVM,"{'C': 10, 'gamma': 0.01, 'kernel': 'rbf'}",0.9842360706658901,0.010067012805626706
+SVM,"{'C': 10, 'gamma': 0.1, 'kernel': 'rbf'}",0.9655950779871553,0.010898114812253662
+SVM,"{'C': 100, 'gamma': 'scale', 'kernel': 'rbf'}",0.9678726388102727,0.003962343508040118
+SVM,"{'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}",0.9742914987777288,0.007757956842148742
+SVM,"{'C': 100, 'gamma': 0.1, 'kernel': 'rbf'}",0.9655950779871553,0.010898114812253662
+Red_Neuronal_MLP,"{'activation': 'relu', 'alpha': 0.0001, 'hidden_layer_sizes': (32,)}",0.9184563375692407,0.049429970543103094
+Red_Neuronal_MLP,"{'activation': 'relu', 'alpha': 0.0001, 'hidden_layer_sizes': (64, 32)}",0.955978011074109,0.017838600968934352
+Red_Neuronal_MLP,"{'activation': 'relu', 'alpha': 0.0001, 'hidden_layer_sizes': (32, 16)}",0.9324278074757076,0.02903095904831646
+Red_Neuronal_MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (32,)}",0.9184563375692407,0.049429970543103094
+Red_Neuronal_MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (64, 32)}",0.955978011074109,0.017838600968934352
+Red_Neuronal_MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (32, 16)}",0.9324278074757076,0.02903095904831646
+Red_Neuronal_MLP,"{'activation': 'relu', 'alpha': 0.01, 'hidden_layer_sizes': (32,)}",0.9184563375692407,0.049429970543103094
+Red_Neuronal_MLP,"{'activation': 'relu', 'alpha': 0.01, 'hidden_layer_sizes': (64, 32)}",0.955978011074109,0.017838600968934352
+Red_Neuronal_MLP,"{'activation': 'relu', 'alpha': 0.01, 'hidden_layer_sizes': (32, 16)}",0.9324278074757076,0.02903095904831646
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (32,)}",0.9149444386023058,0.05780597733568162
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (64, 32)}",0.9553646310112714,0.015293027547380942
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (32, 16)}",0.9615279308700909,0.015083071219401032
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.001, 'hidden_layer_sizes': (32,)}",0.9149444386023058,0.05780597733568162
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.001, 'hidden_layer_sizes': (64, 32)}",0.9553646310112714,0.015293027547380942
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.001, 'hidden_layer_sizes': (32, 16)}",0.9615279308700909,0.015083071219401032
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.01, 'hidden_layer_sizes': (32,)}",0.9149444386023058,0.05780597733568162
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.01, 'hidden_layer_sizes': (64, 32)}",0.9553646310112714,0.015293027547380942
+Red_Neuronal_MLP,"{'activation': 'tanh', 'alpha': 0.01, 'hidden_layer_sizes': (32, 16)}",0.9615279308700909,0.015083071219401032

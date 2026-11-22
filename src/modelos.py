@@ -63,6 +63,7 @@ resultados_cv = []
 print("=== INICIANDO ENTRENAMIENTO Y BÚSQUEDA DE HIPERPARÁMETROS (CV=5) ===\n")
 
 # 3. Ejecutar GridSearchCV para cada modelo
+malla_completa = []
 for nombre, cfg in modelos_config.items():
     print(f"Entrenando {nombre}...")
     grid = GridSearchCV(
@@ -74,6 +75,9 @@ for nombre, cfg in modelos_config.items():
         refit=True
     )
     grid.fit(X_train, y_train)
+    df_grid = pd.DataFrame(grid.cv_results_)[["params", "mean_test_score", "std_test_score"]]
+    df_grid.insert(0, "Modelo", nombre)
+    malla_completa.append(df_grid)
     
     # Mejor modelo y métricas de validación cruzada
     mejor_modelo = grid.best_estimator_
@@ -109,3 +113,4 @@ df_res.to_csv("reports/resultados_cv.csv", index=False)
 
 print("=== RESUMEN FINAL (GUARDADO EN reports/resultados_cv.csv) ===")
 print(df_res[["Modelo", "CV_F1_Media", "CV_F1_DesvEst", "Val_F1", "Val_Exactitud"]].to_string(index=False))
+pd.concat(malla_completa, ignore_index=True).to_csv("reports/resultados_malla_completa.csv", index=False)

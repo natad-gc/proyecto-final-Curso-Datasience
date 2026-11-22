@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 2. Ejecutar los scripts en este orden desde la carpeta principal (todos usa SEED=60 salgan los mismos resultados):
 
-al igual que las librerias estos comando igual se ponen en la terminak 
+al igual que las librerias estos comando igual se ponen en la terminal siguiendo este mismo orden  
 python src/edaypreprocesamiento.py
 python src/modelos.py
 python src/evaluacion.py

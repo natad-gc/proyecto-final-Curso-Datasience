@@ -7,6 +7,7 @@ import seaborn as sns
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from scipy.stats import shapiro
 
 # 1. Semilla fija para reproducibilidad
 SEED = 60
@@ -96,3 +97,7 @@ y_test.to_csv("data/processed/y_test.csv", index=False)
 joblib.dump(scaler, "models/scaler.joblib")
 
 print("Preprocesamiento terminado y archivos guardados en data/processed/ y models/.")
+# Prueba de normalidad Shapiro-Wilk por clase (supuesto de Naive Bayes)
+rej_m = sum(shapiro(X.loc[y == 0, col])[1] < 0.05 for col in X.columns)
+rej_b = sum(shapiro(X.loc[y == 1, col])[1] < 0.05 for col in X.columns)
+print(f"Shapiro-Wilk (p < 0.05) -> Maligno: {rej_m}/30, Benigno: {rej_b}/30")
