@@ -1,3 +1,4 @@
+from sklearn.metrics import precision_recall_curve, average_precision_score
 import joblib
 import numpy as np
 import pandas as pd
@@ -97,3 +98,35 @@ print(casos_fallidos.to_string())
 casos_fallidos.to_csv("reports/analisis_errores.csv")
 
 print("\nGráficas guardadas en reports/figures/ (fig4 y fig5) y tablas en reports/.")
+# --- Curvas Precisión-Recall (Clase Maligno = 0) ---
+modelos_pr = {
+    "Regresion Logistica": joblib.load("models/Regresion_Logistica.joblib"),
+    "Naive Bayes": joblib.load("models/Naive_Bayes.joblib"),
+    "SVM": joblib.load("models/SVM.joblib"),
+    "Red Neuronal MLP": joblib.load("models/Red_Neuronal_MLP.joblib"),
+}
+
+y_test_maligno = (np.ravel(y_test) == 0).astype(int)
+prevalencia = y_test_maligno.mean()
+
+plt.figure(figsize=(7, 5), dpi=300)
+for nombre, modelo in modelos_pr.items():
+    y_prob_maligno = modelo.predict_proba(X_test)[:, 0]
+    prec, rec, _ = precision_recall_curve(y_test_maligno, y_prob_maligno)
+    ap = average_precision_score(y_test_maligno, y_prob_maligno)
+    plt.plot(rec, prec, lw=2, label=f"{nombre} (AP = {ap:.4f})")
+
+plt.axhline(
+    y=prevalencia, color="gray", linestyle="--", lw=1.2,
+    label=f"Base / Prevalencia (AP = {prevalencia:.2f})"
+)
+plt.title("Curvas Precisión-Recall Comparativas (Clase Maligno)")
+plt.xlabel("Sensibilidad / Recall (Maligno)")
+plt.ylabel("Precisión (Maligno)")
+plt.xlim([-0.02, 1.02])
+plt.ylim([0.30, 1.05])
+plt.legend(loc="lower left", frameon=True)
+plt.tight_layout()
+plt.savefig("reports/figures/fig6_curvas_pr.png", dpi=300)
+plt.close()
+print("Gráfica guardada en reports/figures/fig6_curvas_pr.png")
