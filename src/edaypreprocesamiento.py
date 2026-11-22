@@ -29,6 +29,23 @@ print(f"Valores faltantes totales: {df.isnull().sum().sum()}")
 print("\nProporción de clases:")
 print(y.value_counts(normalize=True).rename({0: "Maligno (0)", 1: "Benigno (1)"}).round(4))
 
+# Nombres en español de las variables (solo para las gráficas)
+ATRIBUTOS_ES = {
+    "radius": "radio", "texture": "textura", "perimeter": "perímetro", "area": "área",
+    "smoothness": "suavidad", "compactness": "compacidad", "concavity": "concavidad",
+    "concave points": "puntos cóncavos", "symmetry": "simetría", "fractal dimension": "dimensión fractal",
+}
+PREFIJOS_ES = {"mean": "media", "error": "error", "worst": "peor"}
+
+def nombre_es(col):
+    """Traduce p. ej. 'worst concave points' -> 'puntos cóncavos (peor)'."""
+    if col == "target":
+        return "diagnóstico (0 = maligno)"
+    for pref, pref_es in PREFIJOS_ES.items():
+        if col.startswith(pref + " "):
+            return f"{ATRIBUTOS_ES[col[len(pref) + 1:]]} ({pref_es})"
+    return col
+
 # Configurar estilo limpio para figuras del artículo IEEE
 sns.set_theme(style="whitegrid", context="paper", font_scale=1.1)
 
@@ -49,7 +66,8 @@ plt.close()
 corr_matrix = df.corr()
 top_cols = corr_matrix["target"].abs().sort_values(ascending=False).head(11).index
 plt.figure(figsize=(9, 7))
-sns.heatmap(df[top_cols].corr(), annot=True, fmt=".2f", cmap="coolwarm", center=0, square=True)
+corr_es = df[top_cols].corr().rename(index=nombre_es, columns=nombre_es)
+sns.heatmap(corr_es, annot=True, fmt=".2f", cmap="coolwarm", center=0, square=True)
 plt.title("Matriz de Correlación (Top 10 Variables vs Diagnóstico)")
 plt.tight_layout()
 plt.savefig("reports/figures/fig2_correlacion.png", dpi=300)
@@ -63,7 +81,8 @@ df_plot["Diagnóstico"] = df_plot["target"].map({0: "Maligno", 1: "Benigno"})
 
 for ax, col in zip(axes.flatten(), top_4_features):
     sns.boxplot(data=df_plot, x="Diagnóstico", y=col, palette=["#d62728", "#1f77b4"], ax=ax)
-    ax.set_title(f"Distribución de {col}")
+    ax.set_title(f"Distribución de {nombre_es(col)}")
+    ax.set_ylabel(nombre_es(col))
     ax.set_xlabel("")
 plt.tight_layout()
 plt.savefig("reports/figures/fig3_distribuciones.png", dpi=300)
